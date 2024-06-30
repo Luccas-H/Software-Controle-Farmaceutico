@@ -1,5 +1,6 @@
 import os 
 import time
+import csv
 listaRemedios = [];
 
 def CadastroRemedio(nomeRemedio,tipoRemedio,statusRemedio):
@@ -9,6 +10,7 @@ def CadastroRemedio(nomeRemedio,tipoRemedio,statusRemedio):
     remedio.append(tipoRemedio);
     remedio.append(statusRemedio);
     listaRemedios.append(remedio);
+    IncluindoCSV();
     time.sleep(1);
 
 def EstoqueRemedios():
@@ -19,6 +21,7 @@ def EstoqueRemedios():
             print(f"Tipo do Remédio:{listaRemedios[i][1]}");
             print(f"Status do Remédio:{listaRemedios[i][2]}");
             print("");
+            
             time.sleep(0.5);
     else:
         print("A LISTA ESTÁ VAZIA!!!");
@@ -50,7 +53,24 @@ def RemoveRemedio():
                 else:
                     print("Tente novamente se atentando ao nome dos remédios");
                     time.sleep(1);
+    IncluindoCSV();
     
+def IncluindoCSV():
+    with open('lista_remedios.csv', mode ='w', newline ='') as file:
+        escrita = csv.writer(file);
+        escrita.writerow(["Nome:", "Tipo:", "Status:"]);
+        for remedio in listaRemedios:
+            escrita.writerow(remedio);
+    print("\n - LISTA SALVA - ");
+    time.sleep(1);
+
+def CarregandoArquivoCsv():
+    with open('lista_remedios.csv', mode ='r') as file:
+        lendoArquivo = csv.reader(file);
+        next(lendoArquivo);
+        for remedios in lendoArquivo:
+            listaRemedios.append(remedios);
+    print("\n - lEITURA REALIZADA - ");
 
 def Logo():    
     print("""
@@ -72,7 +92,9 @@ def Topicos():
 def Menu():    
     Topicos();
 
+
 Logo();
+CarregandoArquivoCsv()
 escolha = 0;
 while escolha != 5:
     print("="*80);
