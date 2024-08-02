@@ -25,7 +25,8 @@ def EstoqueRemedios():
             time.sleep(0.5);
     else:
         print("A LISTA ESTÁ VAZIA!!!");
-        time.sleep(0.5);    
+        time.sleep(0.5);
+        os.system("cls");    
 
 def AlterandoStatus():
     os.system("cls")
@@ -37,6 +38,7 @@ def AlterandoStatus():
                 statusAtt = str(input('Digite qual status deseja adicionar:'));
                 remedio[2]= statusAtt;
                 time.sleep(1);
+                print("-ESTADO ALTERADO-");
     else:
         print("\nÉ necessario digitar algum remédio para prosseguir com o processo de mudança.");
         time.sleep(1);
@@ -63,6 +65,7 @@ def IncluindoCSV():
             escrita.writerow(remedio);
     print("\n - LISTA SALVA - ");
     time.sleep(1);
+    os.system("cls");
 
 def CarregandoArquivoCsv():
     with open('lista_remedios.csv', mode ='r') as file:
@@ -86,7 +89,7 @@ def Topicos():
     print("1. Cadastrar");
     print("2. Lista remédios");
     print("3. Alterar estado do remédio");
-    print("4. Remover item da lista")
+    print("4. Remover item da lista");
     print("5. Sair");
 
 def Menu():    
@@ -104,16 +107,26 @@ while escolha != 5:
         print("");
         CadastroRemedio(input("NOME:"),input("TIPO:"), input("STATUS:"));
         print("\n- REMÉDIO CADASTRADO COM SUCESSO -\n");
+        time.sleep(1);
+        os.system("cls");
     elif escolha ==2:
         print("\n -LISTA DOS REMÉDIOS- ");
         EstoqueRemedios();
     elif escolha ==3:
         print("\n -ALTERANDO STATUS- \n");
         AlterandoStatus();
+        time.sleep(1);
+        os.system("cls");
     elif escolha ==4:
         print("\n -REMOVENDO REMÉDIO- \n");
         RemoveRemedio();
+        time.sleep(1);
+        os.system("cls");
     elif escolha ==5:
         print("DESLOGANDO DO SISTEMA!!");
+        time.sleep(1);
+        os.system("cls");
     else:
         print("Opção invalida!!");
+        time.sleep(1);
+        os.system("cls");
